@@ -1,0 +1,28 @@
+{
+  "name": "launch2015",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "colors": "^1.0.3",
+    "firebase": "^2.2.1",
+    "hapi": "^8.2.0",
+    "lodash": "^3.3.1",
+    "sendgrid": "^1.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/echohtp/launch2015.git"
+  },
+  "author": "Jason Schorr <echohtp@gmail.com> (http://jasonschorr.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/echohtp/launch2015/issues"
+  },
+  "homepage": "https://github.com/echohtp/launch2015"
+}
