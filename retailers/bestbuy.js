@@ -1,0 +1,114 @@
+//test various api endpoints
+'use strict';
+//http://api.remix.bestbuy.com/v1/stores(region=ut)?format=json&show=storeId,city,region&apiKey=YourAPIKey
+
+/*
+KIDS AND TEENS
+{
+id: "abcat0013000",
+name: "Teens"
+},
+{
+id: "abcat0014000",
+name: "Kids"
+},
+
+*/
+module.exports = {
+		search:  function(searchTerm, searchCallback){
+
+			var http = require('http');
+			var _ = require('lodash');
+			var Firebase = require('firebase');
+
+			var bestbuyOutput = function(output){
+				if('function' === typeof searchCallback){
+					searchCallback(output);
+				}
+			};
+
+			var parseBestBuyResults = function( results, callback ){
+				//var resultKeys = _.keys(results);
+				var objectResults = JSON.parse(results);
+
+				//console.log(objectResults.searchresultgroups);
+				//var productResults = [];
+				var productOutput = [];
+				var productResults = objectResults.products;
+				
+				var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
+				//NEED SOME SANITY CHECKS HERE
+				_.forEach(productResults, function(obj){
+					var prodId = 'bestbuy_' + obj.productId;
+					
+					//go through array of images
+					var allImages = [
+						obj.image,
+						obj.largeFrontImage,
+						obj.mediumImage,
+						obj.largeImage
+					];
+
+					var prodObj = {
+						id: prodId,
+						name: obj.name,
+						image: obj.image,
+						price: obj.regularPrice,
+						provider: 'bestbuy',
+						selected: false,
+						url: obj.url,
+						images: allImages,
+						store:'',
+						category:[]
+					};
+
+					productOutput.push(prodObj);
+
+					productsRef.child(prodId).set(prodObj);	
+				});
+
+				if('function' === typeof callback){
+					callback(productOutput);
+				}
+			};
+
+			var searchBestBuy = function( term ){
+				var req = null;
+				var bestbuyOptions = {
+					hostname: 'api.remix.bestbuy.com',
+					path:'/v1/products(categoryPath.id=abcat0020001|categoryPath.id=abcat0014000)?format=json&apiKey=9knwkdsgvnta5a4uu8af7y4h',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					method:'GET'
+				};
+
+				console.log(bestbuyOptions.hostname + bestbuyOptions.path);
+
+				var bestbuyCallback = function(response){
+
+					var results ='';
+					response.on('data',function(d){
+						results += d;
+					});
+
+					response.on('end',function(){
+						parseBestBuyResults(results, bestbuyOutput)
+					});
+				};
+
+				var reqGet = http.get(bestbuyOptions, bestbuyCallback );
+				
+				reqGet.on('error',function(err){
+					//console.log(err);
+				});
+
+				reqGet.end();
+
+			};
+
+			console.log('bestbuy search called for: ' + searchTerm);
+			searchBestBuy(searchTerm);
+		},
+};
