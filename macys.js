@@ -83,4 +83,4 @@
 	//return {
 		console.log('LOADED MACYS');	
 	//};
-});
+})();

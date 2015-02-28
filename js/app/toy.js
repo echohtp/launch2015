@@ -26,13 +26,10 @@ var ToyGallery = Backbone.View.extend({
 
 		vref.$el.html( $('#gallery_view').html() );
 
-		_.each([0,1,2], function(i){
-			var toy = vref.collection.at(i);
+		vref.collection.each(function(toy){
 			var toyView = new ToyView({model:toy});
 			toyView.render();
-
 			vref.$el.append(toyView.$el.html());
-
 		});
 		$('.home-search-results').html( vref.$el.html() );
 	}
