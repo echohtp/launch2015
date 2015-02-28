@@ -21,3 +21,115 @@ h1 {
 .home-search-results {
 	min-height: 500px;
 }
+
+
+
+
+
+
+body { 
+	font-family: "montserrat" ; 
+	font-weight: 700;
+	letter-spacing: -0.1em;
+	padding-bottom: 60px;
+}
+
+.gift {
+	border: solid 20px #62d9b0 ;
+}
+
+.gift .gifts-header {
+	text-align: center	
+}
+
+
+.gift .gifts-header h1 {
+	font-size: 70px;
+	margin: 0;
+	font-weight: 700;
+	margin-top: 30px;
+	padding: 30px 40px 30px;
+	color: rgb(150, 108, 218);
+	text-shadow: 1px 1px 0px yellow;
+	display: inline-block;
+}
+
+.gift .gift-choices {
+	text-align: center
+}
+
+.gift .gift-choices img {
+	width: 25%;
+	margin: auto;
+	display: inline-block;
+}
+
+.gift .gift-choices img {
+	padding: 40px;
+	border: solid 10px white;
+}
+
+.gift img.picked {
+		border-color: yellow;
+}
+
+.gift .gift-footer {
+	background-color: rgb(150, 108, 218);
+}
+
+.gift-picked .confirm-gift {
+	text-align: center;
+	position: relative;
+}
+
+.gift-picked .gifts-header h1 {
+	margin: 0;
+}
+
+.gift-picked .confirm-gift button {
+	border-radius: 5px;
+	background-color: #62d9b0;
+	color: #d947b5;
+	font-size: 50px;
+	border: 0;
+	padding: 6px 0;
+	width: 350px;
+	margin: auto;
+	display: inline-block;
+	border: solid 8px #fff600;
+	margin-right: 150px;
+}
+
+.gift-picked .confirm-gift .no-back {
+	width: 150px;
+	display: inline-block;
+	text-align: left;
+	font-size: 20px;
+	color: rgb(150, 108, 218);	
+}
+.gift-picked .confirm-gift .no-back a  {
+	color: rgb(150, 108, 218);
+}
+
+.gift-picked .gift-choices img,
+.gift-confirmed .gift-choices img {
+	width: 35%;
+	padding: 0;
+	border: 0;
+}
+
+
+.gift-confirmed .gifts-header h1 {
+	margin: 0;
+	padding: 0;
+}
+
+.gift-confirmed h2 {
+	color: #62d9b0;
+	font-weight: bold;
+	margin: 15px 0 -10px;
+}
+
+.gift-confirmed .gift-confirmed-footer {
+	text-align: center
+}
