@@ -7,7 +7,7 @@ require.config({
 		'firebase': 'lib/firebase', 
 		'bootstrap':'lib/bootstrap.min',
 
-		'toy':'app/toy'
+		'toy':'app/toy',
     },
     shim:{
     	'bootstrap':{
@@ -38,6 +38,7 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 
 	var current_keywords = [];
 
+
 	////////
 	////////
 
@@ -55,7 +56,41 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			
 			toysView.render();
 
+
 		});
+
+	var sendGift = function(){
+		var redeem_code = Math.random().toString(36).slice(2);
+		var selected_toys = new Toys();
+		
+		toyCollection.each(function(toy){
+			if (toy.get('selected')){
+				selected_toys.add(toy);
+			}
+		});
+
+
+
+		console.log('writing to: ' + redeem_code);
+		console.log(selected_toys.length);
+
+		if ( $('#input_child_name').val() && $('#input_recieve_email').val() && $('#input_sender_email').val() ){
+			fbRef.child('gifts').child(redeem_code).child('email_from').set( $('#input_sender_email').val() );
+			fbRef.child('gifts').child(redeem_code).child('email_to').set( $('#input_recieve_email').val() );
+			fbRef.child('gifts').child(redeem_code).child('recp_name').set( $('#input_child_name').val() );
+			fbRef.child('gifts').child(redeem_code).child('toys').set(selected_toys.toJSON());
+		}else {
+			alert('Missing some data!');
+		}
+		//successScreen();
+	}
+
+		//event handler to click the gift and change state
+
+
+
+		//
+
 
 		//setup event handlers
 		$('#btn_add_keyword').click(function(event){
@@ -77,7 +112,9 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			}
 		});
 
-		
+		$('#btn_send_gift').click(function(event){
+			sendGift();
+		});
 	}
 
 
