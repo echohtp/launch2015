@@ -9,7 +9,8 @@
     "firebase": "^2.2.1",
     "hapi": "^8.2.0",
     "lodash": "^3.3.1",
-    "sendgrid": "^1.6.0"
+    "sendgrid": "^1.6.0",
+    "sparkpost": "^0.1.4"
   },
   "devDependencies": {},
   "scripts": {

@@ -5,7 +5,8 @@ var Firebase = require('firebase');
 var Sendgrid = require('sendgrid');
 var Colors = require('colors');
 
-var macys = require('./macys.js');
+var macys = require('./retailers/macys.js');
+var bestbuy = require('./retailers/bestbuy.js');
 
 var sOptions = {
     host: 'localhost',
@@ -62,8 +63,13 @@ server.route({
     handler: function(request,reply){
         var sT = request.params.term || false;
         if(sT){
-            macys.search(sT,function(data){
-                reply(data);
+            var results = [];
+            macys.search(sT,function(mdata){
+                console.log('back from macys search');
+                bestbuy.search(sT,function(bdata){
+                    console.log('back from best buy search');
+                    reply(mdata.concat(bdata));
+                });
             });
         }else{
             reply('error, no search term');

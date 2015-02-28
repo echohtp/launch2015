@@ -69,7 +69,7 @@
 					<input type="text" class="form-control" id="input_sender_email" placeholder=""/>
 				</span>
 				<span>
-					<button class="btn btn-success">Send Gift!</button>
+					<button class="btn btn-success" id="btn_send_gift">Send Gift!</button>
 				</span>
 			</div>
 
@@ -95,10 +95,11 @@
 
 
 		<script type="text/template" id="template_toy">
-			<span class="col-xs-3 home-toy">
+			<span class="col-xs-3 home-toy" data-id="<%= toy.get('id') %>">
 				<img class="img-responsive" src="<%= toy.get('image') %>" />
-				<p> <%= toy.get('name') %> </p>
-				<p> <%= toy.get('price') %> </p>
+				<p><%= toy.get('name') %></p>
+				<p><%= toy.get('price') %></p>
+				<p><%= toy.get('selected') %></p>
 			</span>
 		</script>
 

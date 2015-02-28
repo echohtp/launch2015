@@ -6,7 +6,7 @@ module.exports = {
 			//var OAuth = require('oauth');
 			var http = require('http');
 			var _ = require('lodash');
-
+			var Firebase = require('firebase');
 			// var oauth = new OAuth.OAuth(
 			//   'http://api.macys.com/',
 			//   'http://api.macys.com/',
@@ -18,7 +18,6 @@ module.exports = {
 			// );
 
 			var macysOutput = function(output){
-				console.log(output);
 				if('function' === typeof searchCallback){
 					searchCallback(output);
 				}
@@ -33,23 +32,38 @@ module.exports = {
 				var productOutput = [];
 				var productResults = objectResults.searchresultgroups[0].products.product;
 				
+				var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
+				//NEED SOME SANITY CHECKS HERE
 				_.forEach(productResults, function(obj){
+					var prodId = 'macys_' + obj.id;
 					
+					//go through array of images
+					var allImages = [];
+					_.forEach(obj.image,function(d,i){
+						var url = d.imageurl || false;
+						if( url ){
+							allImages.push(url);
+						}
+					});
+
 					var prodObj = {
+						id: prodId,
 						name: obj.summary.name,
 						image: obj.image[0].imageurl,
 						price: obj.price.regular.value,
 						provider: 'macys',
 						selected: false,
 						url: obj.summary.producturl,
-						images:[obj.image[0].imageurl],
+						images: allImages,
 						store:'',
 						category:[]
 					};
 
 					productOutput.push(prodObj);
+
+					productsRef.child(prodId).set(prodObj);	
 				});
-				
+
 				if('function' === typeof callback){
 					callback(productOutput);
 				}
