@@ -18,7 +18,6 @@ module.exports = {
 			// );
 
 			var macysOutput = function(output){
-				console.log(output);
 				if('function' === typeof searchCallback){
 					searchCallback(output);
 				}
