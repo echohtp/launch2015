@@ -1,0 +1,23 @@
+h1 {
+	text-align: center;
+	color: rgb(255,255,254);
+}
+
+.home-budget-area{
+	padding: 15px;
+	border-radius: 5px;
+	background-color: rgb(150, 216, 174);
+}
+
+.home-toy-header > span {
+	min-height: 200px;
+}
+
+.home-toy-footer {
+	min-height: 300px;
+	background-color: rgb(150, 108, 218);
+}
+
+.home-search-results {
+	min-height: 500px;
+}
