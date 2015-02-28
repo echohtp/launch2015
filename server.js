@@ -5,7 +5,7 @@ var Firebase = require('firebase');
 var Sendgrid = require('sendgrid');
 var Colors = require('colors');
 
-var Macys = require('./macys.js');
+var macys = require('./macys.js');
 
 var sOptions = {
     host: 'localhost',
@@ -52,6 +52,23 @@ server.route({
     handler: {
         directory: {
             path: './css'
+        }
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/search/{term}',
+    handler: function(request,reply){
+        var sT = request.params.term || false;
+        if(sT){
+            // var results = Macys.search(sT);
+           // var macysSearch = new Macys();
+            macys.search(sT,function(data){
+                reply(data);
+            });
+        }else{
+            reply('error, no search term');
         }
     }
 });

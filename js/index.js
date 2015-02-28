@@ -47,7 +47,14 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 	////////
 	////////
 
+
 	var indexInit = function(){
+		//pull the assets
+		$.get('/search/toys',function(res){
+			console.log('back');
+			console.log(res);
+		});
+
 		//setup event handlers
 		$('#btn_add_keyword').click(function(event){
 			event.preventDefault();
