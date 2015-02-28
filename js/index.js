@@ -5,7 +5,9 @@ require.config({
 		'underscore': 'lib/underscore',
 		'backbone': 'lib/backbone',
 		'firebase': 'lib/firebase', 
-		'bootstrap':'lib/bootstrap.min'
+		'bootstrap':'lib/bootstrap.min',
+
+		'toy':'app/toy'
     },
     shim:{
     	'bootstrap':{
@@ -13,88 +15,34 @@ require.config({
     	},
     	'backbone':{
     		deps:['underscore']
+    	},
+    	'toy':{
+    		deps:['backbone']
     	}
     }
 });
 
-require(['jquery','underscore','backbone','bootstrap','firebase'],function(){
+require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function(){
 
 	console.log ('toypic started');
 
-	var Model = Backbone.Model.extend({
-		defaults: {
-			name: 'Default',
-			image: 'img/teddy.png',
-			price: '$100.00',
-			provider: 'bestbuy',
-			selected: false,
-			url: '',
-			images:[],
-			store:'',
-			category:[]
-		}
-	});
+	var toyCollection = new Toys();
+	var toysView = new ToyGallery({
+			el: 'home-search-results',
+			collection:toyCollection
+		});
 
-	var mCollection = Backbone.Collection.extend({
-		model: Model
-	});
-
-	var toyCollection = new mCollection();
-
-	var tView = Backbone.View.extend({
-		initialize: function(){
-			console.log('setup toy view');
-		},
-
-		render: function(){
-			console.log('render toy view');
-			var template = _.template( $('#template_toy').html() );
-
-			_.each([0,1,2], function(i){
-				console.log('t1');
-				var toy = toyCollection.at(i);
-				console.log(toy);
-				var template = _.template( $('#template_toy').html() );
-				var html = template({toy: toy});
-				$('.toy-row-1').append(html);
-			});
-
-			_.each([3,4,5], function(i){
-				console.log('t2');
-				var toy = toyCollection.at(i);
-				console.log(toy);
-				var template = _.template( $('#template_toy').html() );
-				var html = template({toy: toy});
-				$('.toy-row-2').append(html);
-			});
-
-			_.each([6,7,8], function(i){
-				console.log('t3');
-				var toy = toyCollection.at(i);
-				console.log(toy);
-				var template = _.template( $('#template_toy').html() );
-				var html = template({toy: toy});
-				$('.toy-row-3').append(html);
-			});
-		}
-	});
-
-	var fbRef = new Firebase('https://toypic.firebaseio.com/');
+	//var fbRef = new Firebase('https://toypic.firebaseio.com/');
 
 	var current_keywords = [];
 
 	_.each([1,2,3,4,5,6,7,8,9], function(){
-		var t = new Model();
+		var t = new Toy();
 		console.log('adding a toy');
 		toyCollection.add(t);
 	});
 
-	var toyView = new tView();
-
-
-
-	$(function(){
-
+	var indexInit = function(){
 		//setup event handlers
 		$('#btn_add_keyword').click(function(event){
 			event.preventDefault();
@@ -115,8 +63,9 @@ require(['jquery','underscore','backbone','bootstrap','firebase'],function(){
 			}
 		});
 
-		toyView.render();
+		toysView.render();
+	}
 
-	});
 
+	indexInit();
 });
