@@ -24,6 +24,8 @@ require.config({
 
 require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function(){
 
+	/// TO BE CHANGGED
+	//// FOR TESTING
 	console.log ('toypic started');
 
 	var toyCollection = new Toys();
@@ -32,7 +34,7 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			collection:toyCollection
 		});
 
-	//var fbRef = new Firebase('https://toypic.firebaseio.com/');
+	var fbRef = new Firebase('https://toypic.firebaseio.com/');
 
 	var current_keywords = [];
 
@@ -41,6 +43,9 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 		console.log('adding a toy');
 		toyCollection.add(t);
 	});
+
+	////////
+	////////
 
 	var indexInit = function(){
 		//setup event handlers
