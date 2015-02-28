@@ -26,6 +26,7 @@ var ToyGallery = Backbone.View.extend({
 	render: function(){
 		console.log('render toy view');
 		var vref = this;
+		
 		vref.$el.html( $('#gallery_view').html() );
 
 		_.each([0,1,2], function(i){
