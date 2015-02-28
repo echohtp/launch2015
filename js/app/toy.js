@@ -20,10 +20,8 @@ var Toys = Backbone.Collection.extend({
 
 var ToyGallery = Backbone.View.extend({
 	initialize: function(){
-		console.log('set up gallery view');
 	},
 	render: function(){
-		console.log('render toy view');
 		var vref = this;
 
 		vref.$el.html( $('#gallery_view').html() );
@@ -36,7 +34,6 @@ var ToyGallery = Backbone.View.extend({
 			vref.$el.append(toyView.$el.html());
 
 		});
-		console.log(vref.$el.html() );
 		$('.home-search-results').html( vref.$el.html() );
 	}
 });
@@ -44,7 +41,6 @@ var ToyGallery = Backbone.View.extend({
 var ToyView = Backbone.View.extend({
 	template: _.template( $('#template_toy').html() ),
 	initialize: function(){
-		console.log('setup toy view');
 	},
 	render: function(){
 		this.$el.html( this.template({toy:this.model}) );
