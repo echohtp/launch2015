@@ -7,7 +7,7 @@ var Model = Backbone.Model.extend({
 		price: '$100.00',
 		provider: 'bestbuy',
 		selected: false,
-		url: ''
+		url: '',
 		images:[],
 		store:'',
 		category:[]
