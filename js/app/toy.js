@@ -33,15 +33,35 @@ var ToyGallery = Backbone.View.extend({
 			vref.$el.append(toyView.$el.html());
 		});
 		$('.home-search-results').html( vref.$el.html() );
+
+		$(".home-toy").click(function(event){
+			console.log('toy click: ' + $(this).data('id'));
+			var toyTmp = vref.collection.findWhere({id: $(this).data('id') })
+			if ( toyTmp.get('selected') ){
+				toyTmp.set('selected', false);
+			}else{
+				toyTmp.set('selected', true);
+			}
+			vref.collection.add(toyTmp);
+			vref.render();
+		});
 	}
 });
 
 var ToyView = Backbone.View.extend({
 	template: _.template( $('#template_toy').html() ),
 	initialize: function(){
+		this.$el.html( this.template({toy:this.model}) );
+	},
+	events: {
+		"click .home-toy" : "selectToy"
 	},
 	render: function(){
-		this.$el.html( this.template({toy:this.model}) );
-		return this.$el.html();
+		
+		return this;
+	},
+
+	selectToy: function(){
+		console.log('a toy was clicked');
 	}
 });
