@@ -9,9 +9,11 @@ h1 {
 	background-color: rgb(150, 216, 174);
 }
 
+
 .home-toy-header > span {
-	min-height: 200px;
+	min-height: 250px;
 }
+
 
 .home-toy-footer {
 	min-height: 300px;
@@ -20,4 +22,67 @@ h1 {
 
 .home-search-results {
 	min-height: 500px;
+}
+
+.toy-row-1 .toy-row-2 .toy-row-3 {
+
+}
+
+.home-toy{
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+
+}
+
+.home-toy:hover {
+	border: 3px solid green;
+}
+
+
+.btn-view-options { 
+  color: #B930B5; 
+  background-color: #FCF63C; 
+  border-color: #FCF63C; 
+} 
+ 
+.btn-view-options:hover, 
+.btn-view-options:focus, 
+.btn-view-options:active, 
+.btn-view-options.active, 
+.open .dropdown-toggle.btn-view-options { 
+  color: #B930B5; 
+  background-color: #FCF63C; 
+  border-color: #FCF63C; 
+} 
+ 
+.btn-view-options:active, 
+.btn-view-options.active, 
+.open .dropdown-toggle.btn-view-options { 
+  background-image: none; 
+} 
+ 
+.btn-view-options.disabled, 
+.btn-view-options[disabled], 
+fieldset[disabled] .btn-view-options, 
+.btn-view-options.disabled:hover, 
+.btn-view-options[disabled]:hover, 
+fieldset[disabled] .btn-view-options:hover, 
+.btn-view-options.disabled:focus, 
+.btn-view-options[disabled]:focus, 
+fieldset[disabled] .btn-view-options:focus, 
+.btn-view-options.disabled:active, 
+.btn-view-options[disabled]:active, 
+fieldset[disabled] .btn-view-options:active, 
+.btn-view-options.disabled.active, 
+.btn-view-options[disabled].active, 
+fieldset[disabled] .btn-view-options.active { 
+  background-color: #FCF63C; 
+  border-color: #FCF63C; 
+} 
+ 
+.btn-view-options .badge { 
+  color: #FCF63C; 
+  background-color: #B930B5; 
 }
