@@ -5,6 +5,7 @@ var Firebase = require('firebase');
 var Sendgrid = require('sendgrid');
 var Colors = require('colors');
 
+var Macys = require('./macys.js');
 
 var sOptions = {
     host: 'localhost',
