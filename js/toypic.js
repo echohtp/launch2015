@@ -4,7 +4,10 @@ var Model = Backbone.Model.extend({
 	defaults: {
 		name: '',
 		price: '',
-		url: ''
+		url: '',
+		images:[],
+		store:'',
+		category:[]
 	}
 });
 
