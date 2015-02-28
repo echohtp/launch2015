@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
 h1 {
 	text-align: center;
 	color: rgb(255,255,254);
@@ -27,8 +29,6 @@ h1 {
 
 
 
-
-
 body { 
 	font-family: "montserrat" ; 
 	font-weight: 700;
@@ -37,7 +37,18 @@ body {
 }
 
 .gift {
-	border: solid 20px #62d9b0 ;
+	border: solid 10px #62d9b0 ;
+}
+
+.gift .smallogo {
+	position: absolute;
+	top: 25px;
+	left: 25px;
+}
+
+.gift .smallogo img {
+
+	width: 140px;
 }
 
 .gift .gifts-header {
@@ -54,6 +65,7 @@ body {
 	color: rgb(150, 108, 218);
 	text-shadow: 1px 1px 0px yellow;
 	display: inline-block;
+	letter-spacing: -0.05em
 }
 
 .gift .gift-choices {
@@ -81,7 +93,7 @@ body {
 
 .gift-picked .confirm-gift {
 	text-align: center;
-	position: relative;
+	margin-bottom: 15px;
 }
 
 .gift-picked .gifts-header h1 {
@@ -101,6 +113,12 @@ body {
 	border: solid 8px #fff600;
 	margin-right: 150px;
 }
+
+.gift-picked .confirm-gift button:hover {
+	border: solid 8px #62d9b0;
+	background-color: #fff600;
+}
+
 
 .gift-picked .confirm-gift .no-back {
 	width: 150px;
@@ -135,6 +153,50 @@ body {
 .gift-confirmed .gift-confirmed-footer {
 	text-align: center
 }
+
+
+.gift {
+	-webkit-animation: colorbo 2s infinite ;
+}
+
+@-webkit-keyframes colorbo {
+  0% {
+    border-color: #aa6ed9;
+  }
+  32% {
+    border-color: #aa6ed9;
+  }
+  33% {
+    border-color: #62d9b0;
+  }
+  65% {
+    border-color: #62d9b0;
+  }
+  66% {
+    border-color: yellow;
+  }
+  100% {
+    border-color: yellow;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .home-toy{
 	padding: 10px;
