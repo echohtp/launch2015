@@ -62,8 +62,6 @@ server.route({
     handler: function(request,reply){
         var sT = request.params.term || false;
         if(sT){
-            // var results = Macys.search(sT);
-           // var macysSearch = new Macys();
             macys.search(sT,function(data){
                 reply(data);
             });

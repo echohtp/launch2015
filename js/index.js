@@ -30,29 +30,31 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 
 	var toyCollection = new Toys();
 	var toysView = new ToyGallery({
-			el: '.home-search-results',
-			collection:toyCollection
-		});
+		el: '.home-search-results',
+		collection:toyCollection
+	});
 
 	var fbRef = new Firebase('https://toypic.firebaseio.com/');
 
 	var current_keywords = [];
 
-	_.each([1,2,3,4,5,6,7,8,9], function(){
-		var t = new Toy();
-		console.log('adding a toy');
-		toyCollection.add(t);
-	});
-
 	////////
 	////////
-
 
 	var indexInit = function(){
 		//pull the assets
 		$.get('/search/toys',function(res){
 			console.log('back');
 			console.log(res);
+
+			res.forEach(function(toyData){
+				var t = new Toy(toyData);
+				console.log('adding a toy');
+				toyCollection.add(t);
+			});
+			
+			toysView.render();
+
 		});
 
 		//setup event handlers
@@ -75,7 +77,7 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			}
 		});
 
-		toysView.render();
+		
 	}
 
 

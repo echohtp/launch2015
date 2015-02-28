@@ -34,7 +34,20 @@ module.exports = {
 				var productResults = objectResults.searchresultgroups[0].products.product;
 				
 				_.forEach(productResults, function(obj){
-					productOutput.push(obj);
+					
+					var prodObj = {
+						name: obj.summary.name,
+						image: obj.image[0].imageurl,
+						price: obj.price.regular.value,
+						provider: 'macys',
+						selected: false,
+						url: obj.summary.producturl,
+						images:[obj.image[0].imageurl],
+						store:'',
+						category:[]
+					};
+
+					productOutput.push(prodObj);
 				});
 				
 				if('function' === typeof callback){
