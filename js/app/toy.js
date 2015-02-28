@@ -19,24 +19,24 @@ var Toys = Backbone.Collection.extend({
 });
 
 var ToyGallery = Backbone.View.extend({
-	model: Toy,
 	initialize: function(){
 		console.log('set up gallery view');
 	},
 	render: function(){
 		console.log('render toy view');
 		var vref = this;
-		
+
 		vref.$el.html( $('#gallery_view').html() );
 
 		_.each([0,1,2], function(i){
 			var toy = vref.collection.at(i);
 			var toyView = new ToyView({model:toy});
-			vref.$el.append(toyView.render() );
+			toyView.render();
 
-			console.log(vref.$el.html());
+			vref.$el.append(toyView.$el.html());
+
 		});
-
+		console.log(vref.$el.html() );
 		$('.home-search-results').html( vref.$el.html() );
 	}
 });
@@ -47,6 +47,7 @@ var ToyView = Backbone.View.extend({
 		console.log('setup toy view');
 	},
 	render: function(){
-		this.template({toy:this.model});
+		this.$el.html( this.template({toy:this.model}) );
+		return this.$el.html();
 	}
 });

@@ -28,7 +28,7 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 
 	var toyCollection = new Toys();
 	var toysView = new ToyGallery({
-			el: 'home-search-results',
+			el: '.home-search-results',
 			collection:toyCollection
 		});
 
