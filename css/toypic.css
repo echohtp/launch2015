@@ -1,0 +1,258 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+h1 {
+	text-align: center;
+	color: rgb(255,255,254);
+}
+
+.home-budget-area{
+	padding: 15px;
+	border-radius: 5px;
+	background-color: rgb(150, 216, 174);
+}
+
+
+.home-toy-header > span {
+	min-height: 250px;
+}
+
+
+.home-toy-footer {
+	min-height: 300px;
+	background-color: rgb(150, 108, 218);
+}
+
+.home-search-results {
+	min-height: 500px;
+}
+
+
+
+
+body { 
+	font-family: "montserrat" ; 
+	font-weight: 700;
+	letter-spacing: -0.1em;
+	padding-bottom: 60px;
+}
+
+.gift {
+	border: solid 10px #62d9b0 ;
+}
+
+.gift .smallogo {
+	position: absolute;
+	top: 25px;
+	left: 25px;
+}
+
+.gift .smallogo img {
+
+	width: 140px;
+}
+
+.gift .gifts-header {
+	text-align: center	
+}
+
+
+.gift .gifts-header h1 {
+	font-size: 70px;
+	margin: 0;
+	font-weight: 700;
+	margin-top: 30px;
+	padding: 30px 40px 30px;
+	color: rgb(150, 108, 218);
+	text-shadow: 1px 1px 0px yellow;
+	display: inline-block;
+	letter-spacing: -0.05em
+}
+
+.gift .gift-choices {
+	text-align: center
+}
+
+.gift .gift-choices img {
+	width: 25%;
+	margin: auto;
+	display: inline-block;
+}
+
+.gift .gift-choices img {
+	padding: 40px;
+	border: solid 10px white;
+}
+
+.gift img.picked {
+		border-color: yellow;
+}
+
+.gift .gift-footer {
+	background-color: rgb(150, 108, 218);
+}
+
+.gift-picked .confirm-gift {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.gift-picked .gifts-header h1 {
+	margin: 0;
+}
+
+.gift-picked .confirm-gift button {
+	border-radius: 5px;
+	background-color: #62d9b0;
+	color: #d947b5;
+	font-size: 50px;
+	border: 0;
+	padding: 6px 0;
+	width: 350px;
+	margin: auto;
+	display: inline-block;
+	border: solid 8px #fff600;
+	margin-right: 150px;
+}
+
+.gift-picked .confirm-gift button:hover {
+	border: solid 8px #62d9b0;
+	background-color: #fff600;
+}
+
+
+.gift-picked .confirm-gift .no-back {
+	width: 150px;
+	display: inline-block;
+	text-align: left;
+	font-size: 20px;
+	color: rgb(150, 108, 218);	
+}
+.gift-picked .confirm-gift .no-back a  {
+	color: rgb(150, 108, 218);
+}
+
+.gift-picked .gift-choices img,
+.gift-confirmed .gift-choices img {
+	width: 35%;
+	padding: 0;
+	border: 0;
+}
+
+
+.gift-confirmed .gifts-header h1 {
+	margin: 0;
+	padding: 0;
+}
+
+.gift-confirmed h2 {
+	color: #62d9b0;
+	font-weight: bold;
+	margin: 15px 0 -10px;
+}
+
+.gift-confirmed .gift-confirmed-footer {
+	text-align: center
+}
+
+
+.gift {
+	-webkit-animation: colorbo 2s infinite ;
+}
+
+@-webkit-keyframes colorbo {
+  0% {
+    border-color: #aa6ed9;
+  }
+  32% {
+    border-color: #aa6ed9;
+  }
+  33% {
+    border-color: #62d9b0;
+  }
+  65% {
+    border-color: #62d9b0;
+  }
+  66% {
+    border-color: yellow;
+  }
+  100% {
+    border-color: yellow;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.home-toy{
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+
+}
+
+.home-toy:hover {
+	border: 3px solid green;
+}
+
+
+.btn-view-options { 
+  color: #B930B5; 
+  background-color: #FCF63C; 
+  border-color: #FCF63C; 
+} 
+ 
+.btn-view-options:hover, 
+.btn-view-options:focus, 
+.btn-view-options:active, 
+.btn-view-options.active, 
+.open .dropdown-toggle.btn-view-options { 
+  color: #B930B5; 
+  background-color: #FCF63C; 
+  border-color: #FCF63C; 
+} 
+ 
+.btn-view-options:active, 
+.btn-view-options.active, 
+.open .dropdown-toggle.btn-view-options { 
+  background-image: none; 
+} 
+ 
+.btn-view-options.disabled, 
+.btn-view-options[disabled], 
+fieldset[disabled] .btn-view-options, 
+.btn-view-options.disabled:hover, 
+.btn-view-options[disabled]:hover, 
+fieldset[disabled] .btn-view-options:hover, 
+.btn-view-options.disabled:focus, 
+.btn-view-options[disabled]:focus, 
+fieldset[disabled] .btn-view-options:focus, 
+.btn-view-options.disabled:active, 
+.btn-view-options[disabled]:active, 
+fieldset[disabled] .btn-view-options:active, 
+.btn-view-options.disabled.active, 
+.btn-view-options[disabled].active, 
+fieldset[disabled] .btn-view-options.active { 
+  background-color: #FCF63C; 
+  border-color: #FCF63C; 
+} 
+ 
+.btn-view-options .badge { 
+  color: #FCF63C; 
+  background-color: #B930B5; 
+}

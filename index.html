@@ -2,22 +2,101 @@
 <html lang='en'>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/toypic.css">
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/underscore.js"></script>
-		<script type="text/javascript" src="js/backbone.js"></script>
-		<script type="text/javascript" src="js/firebase.js"></script>
-		<script type="text/javascript" src="js/toypic.js"></script>
-
-		
-
+	
 		<title>toypic.club</title>
 
 	</head>
 
-	<body>
+	<body class="home">
 
+		<div class=""> <!-- main container -->
+			<div class="home-toy-header"> <!-- top stuff -->
+				<span class="col-xs-4" style="background-color: rgb(150, 108, 218); padding-top:10px">
+					<img class="img-responsive" src="img/logo.png" />
+					<br/>
+					<div class="home-budget-area col-xs-8 col-xs-offset-2">
+
+						<label>Budget</label><br/>
+						<label>$</label> <input type="text" placeholder="100.00" />
+					</div>
+				</span>
+				<span class="col-xs-8" style="background-color: rgb(150, 216, 174)">
+					<h3>Send the kid a gift, let them pick!</h3>
+					<label>Narrow it down: </label>
+					<div class="btn-group" data-toggle="buttons">
+					  <label class="btn btn-primary active">
+					    <input type="radio" name="options" id="option1" autocomplete="off" value="boy" checked> Boy
+					  </label>
+					  <label class="btn btn-primary">
+					    <input type="radio" name="options" id="option2" autocomplete="off" value="girl"> Girl
+					  </label>
+					</div><br/>
+					<button class="btn btn-xl btn-view-options center-text">View Options!</button>
+				</span>
+			</div>
+
+			<div class="container home-search-results"> <!-- found gifts -->
+				<div class="row toy-row-1"></div>
+				<div class="row toy-row-2"></div>
+				<div class="row toy-row-3"></div>
+			</div>
+
+			<div class="row home-toy-footer"> <!-- send stuff -->
+				<h1>Ready? Send it to the kid!</h1>
+				<br/>
+				
+				<span class="col-xs-3 col-xs-offset-1">
+					<label>Kid's name:</label>
+					<input type="text" class="form-control" id="input_child_name" placeholder="Little Timmy"/>
+				</span>
+				
+				<span class="col-xs-3">
+					<label>Parents' email:</label>
+					<input type="text" class="form-control" id="input_recieve_email" placeholder="liltimmy@gmail.com"/>
+				</span>
+
+				<span class="col-xs-3">
+					<label>Your email:</label>
+					<input type="text" class="form-control" id="input_sender_email" placeholder="uncle.awesome@gmail.com"/>
+				</span>
+				<span class="col-xs-3">
+					<button class="btn btn-success">Send Gift!</button>
+				</span>
+			</div>
+
+		</div>
 
 	</body>
+
+
+		<script type="text/template" id="result_item">
+
+		</script>
+
+
+		<script type="text/template" id="template_keywords_list">
+			<% _.each(current_keywords, function(kw){  %>
+				<button class="btn btn-primary"> <%= kw %> </button> 
+			<% }); %>
+		</script>
+
+
+
+		<script type="text/template" id="template_toy">
+			<span class="col-xs-3 home-toy">
+				<img class="img-responsive" src="<%= toy.get('image') %>" />
+				<p> <%= toy.get('name') %> </p>
+				<p> <%= toy.get('price') %> </p>
+			</span>
+		</script>
+
+		
+		<script type="text/javascript" src="js/underscore.js"></script>
+		<script type="text/javascript" src="js/backbone.js"></script>
+		<script type="text/javascript" src="js/firebase.js"></script>
+		<script type="text/javascript" src="js/toypic.js"></script>
 
 </html>

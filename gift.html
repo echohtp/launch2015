@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/toypic.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	
+		<title>You got a gift!</title>
+
+	</head>
+
+	<body class="gift">
+		<div class="smallogo">
+			<img src="img/logo-color.png" alt="" />
+		</div>
+		<div class=""> <!-- main container -->
+			<div class="gifts-header"> <!-- top stuff -->
+				<h1>Pick your gift, Tommy!</h1>
+			</div>
+
+			<div class="row gift-choices"> <!-- found gifts -->
+
+				<img src="img/product_1.jpg" alt="" class="picked" />
+				<img src="img/product_2.jpg" alt="" />
+				<img src="img/product_3.jpg" alt="" />
+				<img src="img/product_4.jpg" alt="" />
+				<img src="img/product_1.jpg" alt="" />
+				<img src="img/product_2.jpg" alt="" />
+				<img src="img/product_3.jpg" alt="" />
+				<img src="img/product_4.jpg" alt="" />
+				<img src="img/product_1.jpg" alt="" />
+			</div>
+
+
+		</div>
+
+	</body>
+
+
+		<script type="text/template" id="result_item">
+
+		</script>
+
+
+		<script type="text/template" id="template_keywords_list">
+			<% _.each(current_keywords, function(kw){  %>
+				<button class="btn btn-primary"> <%= kw %> </button> 
+			<% }); %>
+		</script>
+
+		
+		<script type="text/javascript" src="js/underscore.js"></script>
+		<script type="text/javascript" src="js/backbone.js"></script>
+		<script type="text/javascript" src="js/firebase.js"></script>
+		<script type="text/javascript" src="js/toypic.js"></script>
+
+</html>
