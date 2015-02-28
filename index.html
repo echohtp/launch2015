@@ -2,22 +2,55 @@
 <html lang='en'>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/toypic.css">
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/underscore.js"></script>
-		<script type="text/javascript" src="js/backbone.js"></script>
-		<script type="text/javascript" src="js/firebase.js"></script>
-		<script type="text/javascript" src="js/toypic.js"></script>
-
-		
-
+	
 		<title>toypic.club</title>
 
 	</head>
 
-	<body>
+	<body class="home">
 
+		<div class="container"> <!-- main container -->
+			<div class="home-toy-header"> <!-- top stuff -->
+				<span class="col-xs-4" style="background-color: rgb(150, 108, 218)">
+					<br/>
+					<span class="home-budget-area">
+						$ <input type="text" placeholder="100.00" />
+					</span>
+				</span>
+				<span class="col-xs-8" style="background-color: rgb(150, 216, 174)"> FILTERS AND JUNK </span>
+			</div>
+
+			<div class="row home-search-results"> <!-- found gifts -->
+
+			</div>
+
+			<div class="row home-toy-footer"> <!-- send stuff -->
+				<h1>Ready? Send it off!</h3>
+			</div>
+
+		</div>
 
 	</body>
+
+
+		<script type="text/template" id="result_item">
+
+		</script>
+
+
+		<script type="text/template" id="template_keywords_list">
+			<% _.each(current_keywords, function(kw){  %>
+				<button class="btn btn-primary"> <%= kw %> </button> 
+			<% }); %>
+		</script>
+
+		
+		<script type="text/javascript" src="js/underscore.js"></script>
+		<script type="text/javascript" src="js/backbone.js"></script>
+		<script type="text/javascript" src="js/firebase.js"></script>
+		<script type="text/javascript" src="js/toypic.js"></script>
 
 </html>
