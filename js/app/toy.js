@@ -8,6 +8,7 @@ var Toy = Backbone.Model.extend({
 		provider: 'bestbuy',
 		selected: false,
 		url: '',
+		id: null,
 		images:[],
 		store:'',
 		category:[]
