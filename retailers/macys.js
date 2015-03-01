@@ -61,7 +61,7 @@ module.exports = {
 				var productOutput = [];
 				console.log(objectResults.category[0].product);
 				var productResults = objectResults.category[0].product.product;
-			//	var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
+				var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
 				//NEED SOME SANITY CHECKS HERE
 				_.forEach(productResults, function(obj){
 					var prodId = 'macys_' + obj.id;
@@ -90,7 +90,7 @@ module.exports = {
 
 					productOutput.push(prodObj);
 
-					//productsRef.child(prodId).set(prodObj);	
+					productsRef.child(prodId).set(prodObj);	
 				});
 
 				if('function' === typeof callback){
