@@ -10,7 +10,7 @@ var bestbuy = require('./retailers/bestbuy.js');
 var sparkpost = require('sparkpost')({key: '120e87395578ee692606850f732e756169b85c53'});
 
 var sOptions = {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 2015
 };
 

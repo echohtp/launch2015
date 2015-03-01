@@ -75,6 +75,7 @@
 			</div>
 		</div>
 		<div class="container">
+			<h3 class="select9">Select 9 gifts for the kid to choose from:</h3>
 			<div class="home-search-results">
 				<button class="btn btn-xl btn-view-options center-text">Show Options!</button> <!-- found gifts -->
 			</div>
@@ -131,11 +132,12 @@
 
 
 		<script type="text/template" id="template_toy">
-			<span class="col-xs-3 home-toy" data-id="<%= toy.get('id') %>">
+			<span class="home-toy" data-id="<%= toy.get('id') %>">
 				<img class="img-responsive" src="<%= toy.get('image') %>" />
 				<p><%= toy.get('name') %></p>
 				<p><%= toy.get('price') %></p>
 				<p><%= toy.get('selected') %></p>
+				<div class="keep">Keep</div>
 			</span>
 		</script>
 
