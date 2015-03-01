@@ -73,6 +73,7 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			var sToy = toyCollection.findWhere({'selected': true});
 			var html = template ( { toy: sToy } );
 			$('.gift-choices').html(html);
+			$('.gifts-header > h1').html("This one?");
 			$('#btn_get_it').toggle();
 			$('#btn_confirm').toggle();
 			$('#btn_cancel').toggle();

@@ -69,7 +69,7 @@ border: 0;
 width: 180px;
 font-size: 28px;
 padding: 4px 6px;
-margin-left: 10px;
+margin-left: 15px;
 text-align: center;
 color: ;
 }
@@ -87,8 +87,8 @@ color: ;
 
 .home-budget-area > div,
 .home .refine-area > div {
-	margin: 0 40px;
-	padding: 20px 30px;
+	margin: 0 3%;
+	padding: 20px 5%;
 	border-radius: 7px;
 	background-color: #62d9b0;	
 	min-height: 175px;
@@ -157,8 +157,18 @@ border-color: #fff;
 	letter-spacing: -0.05em;
 	text-align: center;
 	color: white;
-	margin: 30px auto 80px;
+	margin: 30px auto 20px;
 }
+
+.home-toy-footer h4 {
+	font-size: 15px;
+	/* font-weight: bold; */
+	letter-spacing: -0.05em;
+	text-align: center;
+	color: rgb(88, 80, 94);
+	margin: 0px auto 60px;
+}
+
 
 .home-toy-footer input {
 	background: transparent;
@@ -193,6 +203,11 @@ background: yellow;
 color: #d947b5;
 font-weight: bold;
 letter-spacing: -0.05em;
+}
+
+.home-toy-footer button:hover {
+	background: #d947b5 ;
+	color: yellow;
 }
 
 
@@ -231,9 +246,8 @@ body {
 	text-align: center	
 }
 
-
 .gift .gifts-header h1 {
-	font-size: 60px;
+	font-size: 50px;
 	margin: 0;
 	font-weight: 700;
 	margin-top: 30px;
@@ -245,11 +259,11 @@ body {
 }
 
 .gift .gift-choices {
-	text-align: center
+	text-align: center;
+	min-height: 300px;
 }
 
 .gift .gift-choices img {
-	width: 25%;
 	margin: auto;
 	display: inline-block;
 	background: white;
@@ -369,7 +383,8 @@ body {
 
 .select9 { text-align: center ; margin: 0px 0 20px; font-weight: bold ; font-size: 18px}
 
-.home-toy {
+.home-toy,
+.gift-toy {
 	padding: 10px;
 	margin: 10px;
 	border: 10px solid transparent;
@@ -385,12 +400,27 @@ body {
 	line-height: 200px
 }
 
-.home-toy img {
+.home-toy img,
+.gift-toy img {
 	display: inline;
 	vertical-align: middle;
 }
 
+.check {
+ position: absolute; 
+ top: 10px;
+ left: 10px;
+ width: 44px;
+ height: 32px;
+ background: url(../img/check.png) no-repeat;
+ display: none;
+}
+
 .home-toy:hover .keep {
+	display: block;
+}
+
+.home-toy.chosen .check {
 	display: block;
 }
 
@@ -402,7 +432,8 @@ body {
 	display: none;
 }
 
-.home-toy p { display: none ;}
+.home-toy p,
+.gift-toy p { display: none ;}
 
 .home-toy .keep {
 	background: rgba(92,255,12,0.8);
@@ -474,4 +505,22 @@ fieldset[disabled] .btn-view-options.active {
 .btn-view-options .badge { 
   color: #FCF63C; 
   background-color: #B930B5; 
+}
+
+
+
+.success .gift-toy { 
+width: 15%;
+min-height: 100px;
+min-width: inherit;
+line-height: inherit;
+padding: 5px;
+margin: 5px;
+cursor: default;
+ }
+
+
+
+@media (min-width: 992px) {
+
 }
