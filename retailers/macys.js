@@ -75,22 +75,24 @@ module.exports = {
 						}
 					});
 
-					var prodObj = {
-						id: prodId,
-						name: obj.summary.name,
-						image: obj.image[0].imageurl,
-						price: obj.price.regular.value,
-						provider: 'macys',
-						selected: false,
-						url: obj.summary.producturl,
-						images: allImages,
-						store:'',
-						category:[]
-					};
+					if(obj.summary && obj.summary.name && obj.price.regular){
+						var prodObj = {
+							id: prodId,
+							name: obj.summary.name,
+							image: obj.image[0].imageurl,
+							price: obj.price.regular.value,
+							provider: 'macys',
+							selected: false,
+							url: obj.summary.producturl,
+							images: allImages,
+							store:'',
+							category:[]
+						};
+						console.log(obj);
+						productOutput.push(prodObj);
 
-					productOutput.push(prodObj);
-
-					productsRef.child(prodId).set(prodObj);	
+						productsRef.child(prodId).set(prodObj);	
+					}
 				});
 
 				if('function' === typeof callback){
@@ -150,7 +152,7 @@ module.exports = {
 
 				var macysOptions = {
 					hostname: 'api.macys.com',
-					path: '/v3/catalog/category/22941/browseproducts',
+					path: '/v3/catalog/category/62853/browseproducts',
 					//path:'/v4/catalog/search?searchphrase=' + term,
 					headers: {
 						'X-Macys-Webservice-Client-Id': 'Launch2015',
