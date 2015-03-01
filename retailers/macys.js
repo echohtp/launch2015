@@ -13,6 +13,33 @@
 
 module.exports = {
 		search: function( searchTerm, searchCallback ){
+			var http = require('http');
+			var _ = require('lodash');
+			var Firebase = require('firebase');
+			var Backbone = require('backbone');
+
+			var Toy = Backbone.Model.extend({
+				defaults: {
+					name: 'Default',
+					image: 'img/teddy.png',
+					price: '$100.00',
+					provider: 'bestbuy',
+					selected: false,
+					url: '',
+					id: null,
+					images:[],
+					store:'',
+					category:[]
+				}
+			});
+			var ToyCollection = Backbone.Collection.extend({model:Toy});
+			var searchResults = new ToyCollection();
+
+			searchResults.on('add',function(model){
+				console.log('added');
+				console.log(model);
+			});
+
 			var kidsCategories = [
 				48668,
 				52355,
@@ -32,87 +59,87 @@ module.exports = {
 				62853,
 				22941
 			];
+			var ranCatFlag = 0;
 
-			//var OAuth = require('oauth');
-			var http = require('http');
-			var _ = require('lodash');
-			var Firebase = require('firebase');
-			// var oauth = new OAuth.OAuth(
-			//   'http://api.macys.com/',
-			//   'http://api.macys.com/',
-			//   'Launch2015',
-			//   'Launch2015',
-			//   '1.0A',
-			//   null,
-			//   'HMAC-SHA1'
-			// );
-
-			var macysOutput = function(output){
+			var macysOutput = function(){
 				if('function' === typeof searchCallback){
-					searchCallback(output);
+					console.log('cat flat at ' + ranCatFlag );
+
+					if(ranCatFlag >= (kidsCategories.length-2)){
+						searchCallback( searchResults.toJSON() );
+					}else{
+						console.log('NOT YET! length is: ' + kidsCategories.length);
+						console.log(searchResults);
+					}
 				}
 			};
 
 			var parseMacysCategoryResults = function(results, callback){
-				//var resultKeys = _.keys(results);
 				var objectResults = JSON.parse(results);
+				var catCheck = objectResults.category || false;
+				if(!catCheck){
+					console.log('bad data came back, ignoring it');
+				}else{
 
-				//console.log(objectResults.searchresultgroups);
-				var productOutput = [];
-				console.log(objectResults.category[0].product);
-				var productResults = objectResults.category[0].product.product;
-				var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
-				//NEED SOME SANITY CHECKS HERE
-				_.forEach(productResults, function(obj){
-					var prodId = 'macys_' + obj.id;
+					var productResults = objectResults.category[0].product || [];
+
+					var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
+					//NEED SOME SANITY CHECKS HERE
+
+					console.log(productResults);
+					_.forEach(productResults.product, function(obj){
+						var prodId = 'macys_' + obj.id;
 					
-					//go through array of images
-					var allImages = [];
-					_.forEach(obj.image,function(d,i){
-						var url = d.imageurl || false;
-						if( url ){
-							allImages.push(url);
+						//go through array of images
+						var allImages = [];
+						_.forEach(obj.image,function(d,i){
+							var url = d.imageurl || false;
+							if( url ){
+								allImages.push(url);
+							}
+						});
+						
+						if(obj.id && obj.summary.name && obj.price.regular){
+							var prodObj = {
+								id: prodId,
+								name: obj.summary.name,
+								image: obj.image[0].imageurl,
+								price: obj.price.regular.value,
+								provider: 'macys',
+								selected: false,
+								url: obj.summary.producturl,
+								images: allImages,
+								store:'',
+								category:[]
+							};
+							
+							searchResults.add(prodObj);
+
+							productsRef.child(prodId).set(prodObj);	
+						}else{
+							console.log('cooodnt add to collection cause it was missing stuff');
 						}
 					});
 
-					if(obj.summary && obj.summary.name && obj.price.regular){
-						var prodObj = {
-							id: prodId,
-							name: obj.summary.name,
-							image: obj.image[0].imageurl,
-							price: obj.price.regular.value,
-							provider: 'macys',
-							selected: false,
-							url: obj.summary.producturl,
-							images: allImages,
-							store:'',
-							category:[]
-						};
-						console.log(obj);
-						productOutput.push(prodObj);
-
-						productsRef.child(prodId).set(prodObj);	
+					ranCatFlag++;
+					if('function' === typeof callback){
+						callback();
 					}
-				});
-
-				if('function' === typeof callback){
-					callback(productOutput);
 				}
 			};
 
+/*
 			var parseMacysProductResults = function( results, callback ){
 				//var resultKeys = _.keys(results);
 				var objectResults = JSON.parse(results);
 
 				//console.log(objectResults.searchresultgroups);
 				var productOutput = [];
-				console.log(objectResults);
 				productResults = objectResults.searchresultgroups[0].products.product;
 					
 			//	var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
 				//NEED SOME SANITY CHECKS HERE
 				_.forEach(productResults, function(obj){
-					console.log(obj);
 					var prodId = 'macys_' + obj.id;
 					
 					//go through array of images
@@ -139,7 +166,7 @@ module.exports = {
 
 					productOutput.push(prodObj);
 
-					//productsRef.child(prodId).set(prodObj);	
+					productsRef.child(prodId).set(prodObj);	
 				});
 
 				if('function' === typeof callback){
@@ -147,12 +174,14 @@ module.exports = {
 				}
 			};
 
-			var searchMacys = function( term ){
+*/
+
+			var runCategorySearch = function( catId ){
 				var req = null;
 
 				var macysOptions = {
 					hostname: 'api.macys.com',
-					path: '/v3/catalog/category/62853/browseproducts',
+					path: '/v3/catalog/category/' + catId + '/browseproducts',
 					//path:'/v4/catalog/search?searchphrase=' + term,
 					headers: {
 						'X-Macys-Webservice-Client-Id': 'Launch2015',
@@ -161,6 +190,7 @@ module.exports = {
 					},
 					method:'GET'
 				};
+
 				console.log(macysOptions.hostname + macysOptions.path);
 				var macysCallback = function(response){
 
@@ -182,10 +212,55 @@ module.exports = {
 				});
 
 				reqGet.end();
-
 			};
 
+/*
+			var searchMacys = function( term ){
+				var req = null;
+
+				var macysOptions = {
+					hostname: 'api.macys.com',
+					path: '/v3/catalog/category/62853/browseproducts',
+					//path:'/v4/catalog/search?searchphrase=' + term,
+					headers: {
+						'X-Macys-Webservice-Client-Id': 'Launch2015',
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					method:'GET'
+				};
+
+				console.log(macysOptions.hostname + macysOptions.path);
+				var macysCallback = function(response){
+
+					var results ='';
+					response.on('data',function(d){
+						results += d;
+					});
+
+					response.on('end',function(){
+						//parseMacysProductResults( results, macysOutput );
+						parseMacysCategoryResults( results, macysOutput );
+					});
+				};
+
+				var reqGet = http.get(macysOptions, macysCallback );
+				
+				reqGet.on('error',function(err){
+					//console.log(err);
+				});
+
+				reqGet.end();
+			};
+*/
+
 			console.log('search called for: ' + searchTerm);
-			searchMacys(searchTerm);
+			for(var catIndex in kidsCategories){
+				var catId = kidsCategories[catIndex] || false;
+				if( catId ){
+					runCategorySearch(catId);
+				}
+			}
+			
 		}
 };
