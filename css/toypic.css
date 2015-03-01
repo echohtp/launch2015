@@ -291,7 +291,7 @@ body {
 	margin: 0;
 }
 
-.gift-picked .confirm-gift button {
+button.confirm-gift {
 	border-radius: 5px;
 	background-color: #62d9b0;
 	color: #d947b5;
@@ -305,20 +305,24 @@ body {
 	margin-right: 150px;
 }
 
-.gift-picked .confirm-gift button:hover {
+button.confirm-gift:hover {
 	border: solid 8px #62d9b0;
 	background-color: #fff600;
 }
 
 
-.gift-picked .confirm-gift .no-back {
+.no-back {
 	width: 150px;
 	display: inline-block;
 	text-align: left;
 	font-size: 20px;
-	color: rgb(150, 108, 218);	
+	color: rgb(150, 108, 218);
+	width: 150px;
+-webkit-appearance: none;
+border: 0;
+background: white;
 }
-.gift-picked .confirm-gift .no-back a  {
+.no-back a  {
 	color: rgb(150, 108, 218);
 }
 
