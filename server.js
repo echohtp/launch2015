@@ -109,7 +109,7 @@ server.route({
 		var trans = {};
 		trans.campaign = 'Launch2015';
 		trans.from = 'gifts@toypic.club';
-		trans.subject = '{from} sent you a gift!';
+		trans.subject = request.payload.from_name + ' sent you a gift!';
 
 		// Add some content to your email
 		trans.html = '<html><body><h1>' + request.payload.from_name  + ' sent you a gift!</h1><p>Someone loves you and sent you a present! Click the link below to redeem:</p><a href="http://toypic.club/gift/{{present_key}}">http://toypic.club/gift/{{present_key}}</a></body></html>';
