@@ -60,25 +60,22 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 
 			console.log(toyCollection);
 			toysView.render();
-			$('.gifts-header').append('<h1>Pick your gift, ' + giftSnap.child('recp_name').val() + '!</h1>')
+			$('.gifts-header').append('<h1>Pick your gift, ' + giftSnap.child('recp_name').val() + '!</h1>');
+
+			$('.gift-toy').click(function(event){
+				var dataId = $(this).data('id');
+				var sToy = toyCollection.findWhere({'id': dataId});
+				var template = _.template( $('#template_selected_toy').html() );
+				var html = template ( { toy: sToy } );
+				$('.gift-choices').html(html);
+				$('#btn_get_it').toggle();
+				$('#btn_confirm').toggle();
+				$('#btn_cancel').toggle();
+			});
+
 		});
 
 
-
-		$('#btn_get_it').click(function(event){
-
-			if ( toyCollection.findWhere({'selected': true }) ){
-
-			var template = _.template( $('#template_selected_toy').html() );
-			var sToy = toyCollection.findWhere({'selected': true});
-			var html = template ( { toy: sToy } );
-			$('.gift-choices').html(html);
-			$('#btn_get_it').toggle();
-			$('#btn_confirm').toggle();
-			$('#btn_cancel').toggle();
-		}else {
-			alert('Please select a gift!');
-		}
 
 		});
 
