@@ -17,10 +17,11 @@
 		<div class="container"> <!-- main container -->
 			<div class="home-toy-header"> <!-- top stuff -->
 				<img src="img/tagline.png" alt="Send the kid a gift - Let them pick!" class="tagline">
+				<div class="clear"></div>
 				<div class="home-budget-area">
 					<div>
 						<label>Budget</label><br/>
-						<label>$</label><input type="text" placeholder="100" value="100" />
+						<label>$</label><input type="text" placeholder="" value="100" required />
 					</div>
 				</div>
 				<div class="refine-area">
@@ -38,15 +39,34 @@
 						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="girl"> Girl
 						  </label>
 						  <label class="btn btn-primary">
-						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="girl"> Clothes
+						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="clothes"> Clothes
 						  </label>
 						  <label class="btn btn-primary">
-						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="girl"> Toy
+						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="toys"> Toys
 						  </label>
 						  <label class="btn btn-primary">
-						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="girl"> Game
+						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="games"> Games
 						  </label>
+						  <label class="btn btn-primary">
+						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="electronics"> Electronics
+						  </label>
+						<label class="btn btn-primary">
+						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="books"> Books
+						  </label>
+						 </div>
+						 <div class="age">Age:</div>
+						 <div class="btn-group" data-toggle="buttons">
+
 						  
+						  <label class="btn btn-primary">
+						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="37"> 3-7
+						  </label>
+						  <label class="btn btn-primary">
+						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="811"> 8-11
+						  </label>
+						  <label class="btn btn-primary">
+						    <input type="checkbox" name="options" id="option2" autocomplete="off" value="1214"> 12-14
+						  </label>
 						  
 						  
 						</div>
@@ -60,7 +80,7 @@
 			</div>
 		</div>
 		<div class="container last">
-			<div class="row home-toy-footer"> <!-- send stuff -->
+			<div class="row home-toy-footer" style="display: none"> <!-- send stuff -->
 				<h2>Ready? Send it to the kid!</h2>
 				
 				
@@ -71,7 +91,7 @@
 				
 				<span>
 					<label>Parent's email:</label>
-					<input type="text" class="form-control" id="input_recieve_email" placeholder=""/>
+					<input type="text" class="form-control" id="input_recieve_email" placeholder="" required />
 				</span>
 
 
@@ -82,7 +102,7 @@
 
 				<span>
 					<label>Your email:</label>
-					<input type="text" class="form-control" id="input_sender_email" placeholder=""/>
+					<input type="text" class="form-control" id="input_sender_email" placeholder="" required />
 				</span>
 				<span>
 					<button class="btn btn-success" id="btn_send_gift">Send Gift!</button>
