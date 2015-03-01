@@ -45,6 +45,26 @@ var ToyGallery = Backbone.View.extend({
 			vref.collection.add(toyTmp);
 			vref.render();
 		});
+
+
+		$(".gift-toy").click(function(event){
+			console.log('toy click: ' + $(this).data('id'));
+			
+			vref.collection.forEach(function(toy){
+				toy.set('selected', false);
+			});
+
+
+			var toyTmp = vref.collection.findWhere({id: $(this).data('id') })
+			if ( toyTmp.get('selected') ){
+				toyTmp.set('selected', false);
+			}else{
+				toyTmp.set('selected', true);
+			}
+			//vref.collection.add(toyTmp);
+			vref.$el.empty();
+			vref.render();
+		});
 	}
 });
 

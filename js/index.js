@@ -79,10 +79,13 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			fbRef.child('gifts').child(redeem_code).child('email_to').set( $('#input_recieve_email').val() );
 			fbRef.child('gifts').child(redeem_code).child('recp_name').set( $('#input_child_name').val() );
 			fbRef.child('gifts').child(redeem_code).child('toys').set(selected_toys.toJSON());
+
+			$.post('/gift/', { "redeem_code": redeem_code, "email_to": $('#input_recieve_email').val(), "email_from": $('#input_sender_email').val(), "recp_name" : $('#input_child_name').val() })
+
 		}else {
 			alert('Missing some data!');
 		}
-		//successScreen();
+		
 	}
 
 		//event handler to click the gift and change state
