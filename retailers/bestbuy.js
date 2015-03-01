@@ -76,7 +76,7 @@ module.exports = {
 				var req = null;
 				var bestbuyOptions = {
 					hostname: 'api.remix.bestbuy.com',
-					path:'/v1/products((search=toy|search=kid|search=kids)&categoryPath.id=cat02504)?format=json&apiKey=9knwkdsgvnta5a4uu8af7y4h&pageSize=20',
+					path:'/v1/products(categoryPath.id=cat02504)?format=json&apiKey=9knwkdsgvnta5a4uu8af7y4h&pageSize=20',
 					headers: {
 						'Accept': 'application/json',
 						'Content-Type': 'application/json'
