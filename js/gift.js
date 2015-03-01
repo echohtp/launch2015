@@ -84,7 +84,11 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 
 		$('#btn_confirm').click(function(){
 			var selectedToy = toyCollection.findWhere({'selected': true});
-			$.post('/gift/' + redeem_code + '/' + selectedToy.get('id') );
+			$.post('/gift/' + redeem_code + '/' + selectedToy.get('id') )
+			 .done(function(){
+			 	var url = 'http://toypic.club/done/' + redeem_code;
+					window.location.replace(url);
+			 });
 		});
 
 		$('#btn_cancel').click(function(){

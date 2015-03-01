@@ -71,6 +71,15 @@ server.route({
 });
 
 server.route({
+	method: 'GET',
+	path: '/done/{code}',
+	handler: function(request, reply){
+		reply.file ('done.html');
+	}
+});
+
+
+server.route({
     method: 'GET',
     path: '/search/{term}',
     handler: function(request,reply){
