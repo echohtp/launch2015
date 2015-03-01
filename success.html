@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../css/toypic.css">
+		<script type="text/javascript" data-main="../js/success" src="../js/lib/require.js"></script>
+	
+		<title>You got a gift!</title>
+
+
+	</head>
+
+	<body class="gift">
+		<div class="smallogo">
+			<img src="../img/logo-color.png" alt="" />
+		</div>
+		
+
+		<div class="giftcontainer"> <!-- main container -->
+			<div class="gifts-header"> <!-- top stuff -->
+				
+			</div>
+
+			<div class="row gift-choices container text-center"> <!-- found gifts -->
+			
+			</div>
+
+			<div class="text-center">
+
+			</div>
+
+		</div>
+
+	</body>
+
+
+
+		<script type="text/template" id="template_keywords_list">
+			<% _.each(current_keywords, function(kw){  %>
+				<button class="btn btn-primary"> <%= kw %> </button> 
+			<% }); %>
+		</script>
+
+		<script type="text/template" id="template_toy">
+			<span class="col-xs-3 gift-toy" data-id="<%= toy.get('id') %>">
+				<img class="img-responsive" src="<%= toy.get('image') %>" />
+				<p><%= toy.get('name') %></p>
+				<p><%= toy.get('selected') %></p> <!-- if selected we should add a class --> 
+				
+			</span>
+		</script>
+
+		<script type="text/template" id="template_selected_toy">
+			<span class="col-xs-8 gift-toy" data-id="<%= toy.get('id') %>">
+				<img class="img-responsive" src="<%= toy.get('image') %>" />
+				<p><%= toy.get('name') %></p>
+			</span>
+		</script>
+
+
+
+</html>c

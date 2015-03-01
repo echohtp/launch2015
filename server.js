@@ -63,6 +63,14 @@ server.route({
 });
 
 server.route({
+	method: 'GET',
+	path: '/success/{code}',
+	handler: function(request, reply){
+		reply.file ('success.html');
+	}
+});
+
+server.route({
     method: 'GET',
     path: '/search/{term}',
     handler: function(request,reply){
@@ -109,6 +117,7 @@ server.route({
 		    console.log(err);
 		  } else {
 		    console.log('Woohoo! You selected some gifts!! ' + trans.recipients[0].address.email);
+		    reply('success!');
 		  }
 		});
 	}

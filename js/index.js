@@ -74,13 +74,18 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 		console.log('writing to: ' + redeem_code);
 		console.log(selected_toys.length);
 
-		if ( $('#input_child_name').val() && $('#input_recieve_email').val() && $('#input_sender_email').val() ){
+		if ( $('#input_child_name').val() && $('#input_recieve_email').val() && $('#input_sender_email').val() && $('#input_sender_name').val() ){
+			fbRef.child('gifts').child(redeem_code).child('from_name').set( $('#input_sender_name').val() );
 			fbRef.child('gifts').child(redeem_code).child('email_from').set( $('#input_sender_email').val() );
 			fbRef.child('gifts').child(redeem_code).child('email_to').set( $('#input_recieve_email').val() );
 			fbRef.child('gifts').child(redeem_code).child('recp_name').set( $('#input_child_name').val() );
 			fbRef.child('gifts').child(redeem_code).child('toys').set(selected_toys.toJSON());
 
-			$.post('/gift/', { "redeem_code": redeem_code, "email_to": $('#input_recieve_email').val(), "email_from": $('#input_sender_email').val(), "recp_name" : $('#input_child_name').val() })
+			$.post('/gift/', { "redeem_code": redeem_code, "email_to": $('#input_recieve_email').val(), "email_from": $('#input_sender_email').val(), "recp_name" : $('#input_child_name').val(), "from_name": $('#input_sender_name').val() })
+				.done(function(){
+					var url = 'http://toypic.club/success/' + redeem_code;
+					window.location.replace(url);
+				});
 
 		}else {
 			alert('Missing some data!');

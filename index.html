@@ -132,7 +132,11 @@
 
 
 		<script type="text/template" id="template_toy">
-			<span class="home-toy" data-id="<%= toy.get('id') %>">
+			<% if ( toy.get('selected') === true  ) { %> 
+				<span class="home-toy chosen" data-id="<%= toy.get('id') %>">
+			<% } else { %>
+				<span class="home-toy" data-id="<%= toy.get('id') %>">
+			 <% } %>
 				<img class="img-responsive" src="<%= toy.get('image') %>" />
 				<p><%= toy.get('name') %></p>
 				<p><%= toy.get('price') %></p>

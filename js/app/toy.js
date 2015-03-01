@@ -35,15 +35,36 @@ var ToyGallery = Backbone.View.extend({
 		$('.home-search-results').html( vref.$el.html() );
 
 		$(".home-toy").click(function(event){
-			console.log('toy click: ' + $(this).data('id'));
+			var selectedToys = vref.collection.where({'selected': true});
 			var toyTmp = vref.collection.findWhere({id: $(this).data('id') })
-			if ( toyTmp.get('selected') ){
-				toyTmp.set('selected', false);
-			}else{
-				toyTmp.set('selected', true);
+			
+			if ( selectedToys.length < 9 ){
+				
+				if ( toyTmp.get('selected') ){
+					toyTmp.set('selected', false);
+				}else{
+					toyTmp.set('selected', true);
+				}
+				vref.collection.add(toyTmp);
+				
+
+				selectedToys = vref.collection.where({'selected': true});
+
+				$('.select9').text('Select ' + (9 - selectedToys.length) + ' gifts for the kid to choose from:');
+				vref.render();
+				if ( selectedToys.length === 9 ){
+					$('.home-toy-footer').toggle();
+					$('html,body').animate({
+	          			scrollTop: $('.home-toy-footer').offset().top
+	        		}, 1000);
+					if ( toyTmp.get('selected') ){
+						toyTmp.set('selected', false);
+						selectedToys = vref.collection.where({'selected': true});
+						$('.select9').text('Select ' + (9 - selectedToys.length) + ' gifts for the kid to choose from:');
+						vref.render();
+					}
+				}
 			}
-			vref.collection.add(toyTmp);
-			vref.render();
 		});
 
 
