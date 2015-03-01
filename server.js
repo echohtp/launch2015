@@ -109,11 +109,11 @@ server.route({
 		var trans = {};
 		trans.campaign = 'Launch2015';
 		trans.from = 'gifts@toypic.club';
-		trans.subject = 'Someone sent you a gift!';
+		trans.subject = '{from} sent you a gift!';
 
 		// Add some content to your email
-		trans.html = '<html><body><h1>{from} sent you a gift!</h1><p>Someone loves you and sent you a present! Click the link below to redeem:</p><a href="http://toypic.club/gift/{{present_key}}">http://toypic.club/gift/{{present_key}}</a></body></html>';
-		trans.text = 'Someone sent you a gift!\r\nSomeone loves you and sent you a present! Visit the url below to redeem: http://toypic.club/gift/{{present_key}}';
+		trans.html = '<html><body><h1>{from} sent you a gift!</h1><p>Someone loves you and sent you a present!</p><a style="background: yellow ; color: rgb(150, 108, 218) ; padding: 6px 25px ; font-size: 25px ; font-weight: bold ; font-family: "montserrat", arial, sans-serif ; text-decoration: none" href="http://toypic.club/gift/{{present_key}}">http://toypic.club/gift/{{present_key}}</a></body></html>';
+		trans.text = '{from} sent you a gift!\r\nSomeone loves you and sent you a present! Visit the url below to redeem: http://toypic.club/gift/{{present_key}}';
 		trans.substitutionData = {present_key: request.payload.redeem_code, from: request.payload.from_name};
 
 		// Pick someone to receive your email
