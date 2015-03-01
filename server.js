@@ -11,7 +11,7 @@ var sparkpost = require('sparkpost')({key: '120e87395578ee692606850f732e756169b8
 
 var sOptions = {
     host: '0.0.0.0',
-    port: 2015
+    port: parseInt(process.env.PORT, 10) || 3000
 };
 
 

@@ -2,6 +2,7 @@
   "name": "launch2015",
   "version": "0.0.0",
   "description": "",
+  "engines" : { "node" : "0.10.34" },
   "main": "server.js",
   "dependencies": {
     "backbone": "^1.1.2",
