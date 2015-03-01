@@ -66,10 +66,11 @@ server.route({
             var results = [];
             macys.search(sT,function(mdata){
                 console.log('back from macys search');
-                bestbuy.search(sT,function(bdata){
-                    console.log('back from best buy search');
-                    reply(mdata.concat(bdata));
-                });
+               reply(mdata);
+               // bestbuy.search(sT,function(bdata){
+               //     console.log('back from best buy search');
+               //     reply(mdata.concat(bdata));
+               // });
             });
         }else{
             reply('error, no search term');
