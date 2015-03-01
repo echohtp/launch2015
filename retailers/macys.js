@@ -41,21 +41,6 @@ module.exports = {
 			});
 
 			var kidsCategories = [
-				48668,
-				52355,
-				62837,
-				62838,
-				62839,
-				67054,
-				62840,
-				62841,
-				62843,
-				62842,
-				55181,
-				62205,
-				59260,
-				62143,
-				22920,
 				62853,
 				22941
 			];
@@ -65,7 +50,7 @@ module.exports = {
 				if('function' === typeof searchCallback){
 					console.log('cat flat at ' + ranCatFlag );
 
-					if(ranCatFlag >= (kidsCategories.length-2)){
+					if(ranCatFlag >= (kidsCategories.length-1)){
 						searchCallback( searchResults.toJSON() );
 					}else{
 						console.log('NOT YET! length is: ' + kidsCategories.length);
