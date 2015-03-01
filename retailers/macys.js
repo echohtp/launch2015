@@ -42,7 +42,12 @@ module.exports = {
 
 			var kidsCategories = [
 				62853,
-				22941
+				22941,
+				62143,
+				62843,
+				62841,
+				62842,
+				61740
 			];
 			var ranCatFlag = 0;
 
