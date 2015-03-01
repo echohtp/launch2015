@@ -36,8 +36,8 @@ module.exports = {
 			var searchResults = new ToyCollection();
 
 			searchResults.on('add',function(model){
-				console.log('added');
-				console.log(model);
+				console.log('added:');
+			//	console.log(model.get('cid'));
 			});
 
 			var kidsCategories = [
@@ -59,14 +59,15 @@ module.exports = {
 						searchCallback( searchResults.toJSON() );
 					}else{
 						console.log('NOT YET! length is: ' + kidsCategories.length);
-						console.log(searchResults);
+						//console.log(searchResults);
 					}
 				}
 			};
 
-			var parseMacysCategoryResults = function(results, callback){
+			var parseMacysCategoryResults = function(results, catId, callback){
 				var objectResults = JSON.parse(results);
 				var catCheck = objectResults.category || false;
+				//console.log(catCheck);
 				if(!catCheck){
 					console.log('bad data came back, ignoring it');
 				}else{
@@ -76,10 +77,11 @@ module.exports = {
 					var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
 					//NEED SOME SANITY CHECKS HERE
 
-					console.log(productResults);
+					//console.log(productResults);
 					_.forEach(productResults.product, function(obj){
 						var prodId = 'macys_' + obj.id;
-					
+						console.log(catId);
+						//console.log(obj.summary.producttype);
 						//go through array of images
 						var allImages = [];
 						_.forEach(obj.image,function(d,i){
@@ -89,12 +91,32 @@ module.exports = {
 							}
 						});
 						
-						if(obj.id && obj.summary.name && obj.price.regular){
+						//sort pricing
+						var price = false;
+						var priceCheck = obj.price;
+						if(priceCheck.was){
+							price = priceCheck.was.value;	
+						}
+						if(priceCheck.regular){
+							price = priceCheck.regular.value;
+						}
+						if(priceCheck.current){
+							price = priceCheck.current.value;
+						}
+						if(priceCheck.everydayvalue){
+							price = priceCheck.everydayvalue.value;
+						}
+						if(priceCheck.sale){
+							price = priceCheck.sale.value;
+						}
+
+
+						if(obj.id && obj.summary.name && price){
 							var prodObj = {
 								id: prodId,
 								name: obj.summary.name,
 								image: obj.image[0].imageurl,
-								price: obj.price.regular.value,
+								price: price,
 								provider: 'macys',
 								selected: false,
 								url: obj.summary.producturl,
@@ -108,6 +130,7 @@ module.exports = {
 							productsRef.child(prodId).set(prodObj);	
 						}else{
 							console.log('cooodnt add to collection cause it was missing stuff');
+							console.log(priceCheck);
 						}
 					});
 
@@ -191,7 +214,7 @@ module.exports = {
 
 					response.on('end',function(){
 						//parseMacysProductResults( results, macysOutput );
-						parseMacysCategoryResults( results, macysOutput );
+						parseMacysCategoryResults( results, catId, macysOutput );
 					});
 				};
 
