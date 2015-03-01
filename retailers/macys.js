@@ -66,7 +66,7 @@ module.exports = {
 					console.log('cat flat at ' + ranCatFlag );
 
 					if(ranCatFlag >= (kidsCategories.length-2)){
-						searchCallback( searchResults.toArray() );
+						searchCallback( searchResults.toJSON() );
 					}else{
 						console.log('NOT YET! length is: ' + kidsCategories.length);
 						console.log(searchResults);
