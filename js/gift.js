@@ -95,6 +95,17 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			$('#btn_get_it').toggle();
 			$('#btn_confirm').toggle();
 			$('#btn_cancel').toggle();
+			$('.gift-toy').click(function(event){
+				var dataId = $(this).data('id');
+				var sToy = toyCollection.findWhere({'id': dataId});
+				var template = _.template( $('#template_selected_toy').html() );
+				var html = template ( { toy: sToy } );
+				$('.gifts-header > h1').html("This one?");
+				$('.gift-choices').html(html);
+				$('#btn_get_it').toggle();
+				$('#btn_confirm').toggle();
+				$('#btn_cancel').toggle();
+			});
 		});
 	}
 
