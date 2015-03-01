@@ -92,6 +92,7 @@ color: ;
 	border-radius: 7px;
 	background-color: #62d9b0;	
 	min-height: 175px;
+	display: none;
 }
 
 .home .refine-area > div {
