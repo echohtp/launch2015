@@ -61,7 +61,7 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 
 			console.log(toyCollection);
 			toysView.render();
-			$('.gifts-header').append('<h1>Success , ' + giftSnap.child('from_name').val() + '!</h1><p>You sent the following gifts to ' + giftSnap.child('recp_name').val() );
+			$('.gifts-header').append('<h1>Success , ' + giftSnap.child('from_name').val() + '!</h1><h2>You sent the following gifts to ' + giftSnap.child('recp_name').val() + '</h2>');
 		});
 
 	}

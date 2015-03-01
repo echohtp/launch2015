@@ -52,17 +52,25 @@ var ToyGallery = Backbone.View.extend({
 
 				$('.select9').text('Select ' + (9 - selectedToys.length) + ' gifts for the kid to choose from:');
 				vref.render();
-				if ( selectedToys.length === 9 ){
+
+				if ( selectedToys.length === 9){
 					$('.home-toy-footer').toggle();
 					$('html,body').animate({
-	          			scrollTop: $('.home-toy-footer').offset().top
-	        		}, 1000);
-					if ( toyTmp.get('selected') ){
-						toyTmp.set('selected', false);
-						selectedToys = vref.collection.where({'selected': true});
-						$('.select9').text('Select ' + (9 - selectedToys.length) + ' gifts for the kid to choose from:');
-						vref.render();
-					}
+          				scrollTop: $('.home-toy-footer').offset().top
+        			}, 1000);
+				}
+
+			}else if ( selectedToys.length === 9 ){
+				$('.home-toy-footer').toggle();
+				$('html,body').animate({
+          			scrollTop: $('.home-toy-footer').offset().top
+        		}, 1000);
+
+				if ( toyTmp.get('selected') ){
+					toyTmp.set('selected', false);
+					selectedToys = vref.collection.where({'selected': true});
+					$('.select9').text('Select ' + (9 - selectedToys.length) + ' gifts for the kid to choose from:');
+					vref.render();
 				}
 			}
 		});
