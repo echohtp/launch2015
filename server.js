@@ -111,20 +111,24 @@ server.route({
     		reply({error:true,message:'need to specify filter term'});
     	}
 /*
-        var sT = request.params.term || false;
-        if(sT){
-            var results = [];
-            macys.search(sT,function(mdata){
-                console.log('back from macys search');
-              //  console.log(mdata);
-              // reply(mdata);
-                bestbuy.search(sT,function(bdata){
-                    console.log('back from best buy search');
-                    reply(mdata.concat(bdata));
-                });
-            });
-        }else{
-            reply('error, no search term');
+		var pullRetailerData = function(){
+	        if(sT){
+	            var results = [];
+	            macys.search(sT,function(mdata){
+	                console.log('back from macys search');
+	              //  console.log(mdata);
+	              // reply(mdata);
+	                bestbuy.search(sT,function(bdata){
+	                    console.log('back from best buy search');
+	                    reply(mdata.concat(bdata));
+	                });
+	            });
+	        }else{
+	            return { 
+	            	error:true, 
+	            	message:'no retariler data'
+	            };
+	        }
         }
 */
 
