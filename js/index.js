@@ -63,36 +63,26 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			if(term){
 
 				$.get('/search/' + term,function(res){
-					console.log('back');
 					//console.log(res);
 					if(res.length > 0 ){
-						console.log('before colletion is: ');
-						console.log(toyCollection.toJSON());
 						var saveToys = [];
 						toyCollection.each(function(toy){
 							var toyCheck = toy || false;
 							
 							if(toyCheck){
 								if(toy.get('selected')){
-									console.log('save this one' + toy.get('id'));
-
 									saveToys.push(toy.toJSON());
 								}
 							}	
 											
 						});
-						console.log(saveToys);
 						toyCollection.reset(saveToys);	
 
 						res.forEach(function(toyData){
 							var t = new Toy(toyData);
-							console.log('adding a toy');
 							toyCollection.add(t);
 						});
-						
 
-						console.log('new collection is: ');
-						console.log(toyCollection.toJSON());
 						toysView.render();	
 					}else{
 						console.log('no results for term so leaving alone');
