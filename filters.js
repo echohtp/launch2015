@@ -31,7 +31,7 @@ module.exports = {
 		'clothes':{
 			provider:{
 				'bestbuy':[],
-				'macys':[]
+				'macys':[62205,59260,62143,22920,62838,62839,62837,52355,67054,62840,55181]
 			},
 			name: 'Clothes'
 		},

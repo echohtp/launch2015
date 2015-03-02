@@ -77,7 +77,8 @@ module.exports = {
 						var prodId = 'macys_' + obj.id;
 						//console.log(prodId);
 
-					//	console.log(obj.summary.producttype);
+					console.log(obj.summary.producttype);
+					console.log(catId);
 						//go through array of images
 						var allImages = [];
 						_.forEach(obj.image,function(d,i){

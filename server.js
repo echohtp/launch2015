@@ -87,24 +87,35 @@ server.route({
         ///this is just going to pull out from FB
         //sidestep above logic
         var allProductsOutput = [];
+
         if(sT){
 	        fbRef.child('products').once('value',function(productsSnap){
 
-		        fbRef.child('filters').child(sT).once('value',function(filterSnap){
-		        	var allProducts = [];
-		        	filterSnap.forEach(function(pSnap){
-		        		allProducts.push(pSnap.key());
-		        	});
 
-		        	//console.log(allProducts);
+	        	if( sT === 'all' ){
+
 		        	productsSnap.forEach(function(fullProductSnap){
-		        		if( allProducts.indexOf( fullProductSnap.key() ) >= 0 ){
-		        			allProductsOutput.push( fullProductSnap.val() );
-		        		}
+		        		allProductsOutput.push( fullProductSnap.val() );
 		        	});
 		        	reply(allProductsOutput);
 
-		        });
+	        	}else{
+
+			        fbRef.child('filters').child(sT).once('value',function(filterSnap){
+			        	var allProducts = [];
+			        	filterSnap.forEach(function(pSnap){
+			        		allProducts.push(pSnap.key());
+			        	});
+
+			        	productsSnap.forEach(function(fullProductSnap){
+			        		if( allProducts.indexOf( fullProductSnap.key() ) >= 0 ){
+			        			allProductsOutput.push( fullProductSnap.val() );
+			        		}
+			        	});
+			        	reply(allProductsOutput);
+
+			        });
+		    	}
 
 	        });
     	}else{
@@ -113,10 +124,12 @@ server.route({
 
 		var pullRetailerData = function(){
 	        if(sT){
-                bestbuy.search(sT,function(bdata){
-                    console.log('back from best buy search');
-                    //reply(bdata);
-                });
+              //  bestbuy.search(sT,function(bdata){
+                //    console.log('back from best buy search');
+                    macys.search(sT,function(){
+                    	console.log('back from macys');
+                    });
+                //});
 	        }else{
 	            return { 
 	            	error:true, 
@@ -125,7 +138,7 @@ server.route({
 	        }
         }
 
-      // pullRetailerData();
+      //pullRetailerData();
 
     }
 });
