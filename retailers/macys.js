@@ -37,18 +37,12 @@ module.exports = {
 			var searchResults = new ToyCollection();
 
 			searchResults.on('add',function(model){
-				console.log('added:');
+				//console.log('added:');
 			//	console.log(model.get('cid'));
 			});
 
 			var kidsCategories = [
-				62853,
-				22941,
-				62143,
-				62843,
-				62841,
-				62842,
-				61740
+				52355,62837,62838,62839,67054,62840,62841,62843,62842,55181
 			];
 			var ranCatFlag = 0;
 

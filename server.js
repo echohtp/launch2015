@@ -110,7 +110,7 @@ server.route({
     	}else{
     		reply({error:true,message:'need to specify filter term'});
     	}
-/*
+
 		var pullRetailerData = function(){
 	        if(sT){
 	            var results = [];
@@ -120,7 +120,7 @@ server.route({
 	              // reply(mdata);
 	                bestbuy.search(sT,function(bdata){
 	                    console.log('back from best buy search');
-	                    reply(mdata.concat(bdata));
+	                  //  reply(mdata.concat(bdata));
 	                });
 	            });
 	        }else{
@@ -130,7 +130,8 @@ server.route({
 	            };
 	        }
         }
-*/
+        
+        pullRetailerData();
 
     }
 });

@@ -17,14 +17,14 @@ module.exports = {
 		'boy':{
 			provider:{
 				'bestbuy':[],
-				'macys':[]
+				'macys':[52355,62837,62838,62839,67054,62840,62841,62843,62842]
 			},
 			name: 'Boy'
 		},
 		'girl':{
 			provider:{
 				'bestbuy':[],
-				'macys':[]
+				'macys':[55181]
 			},
 			name: 'Girl'
 		},
