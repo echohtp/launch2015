@@ -1,51 +1,81 @@
 module.exports = {
-	'boy':{
-		provider:{
-			'bestbuy':[],
-			'macys':[]
-		},
-		name: 'Boy'
+	getCategories: function(catId,provider){
+		var allCats = [];
+		for(var catKey in this.categories){
+			var catData = this.categories[catKey];
+
+			//this category id checked against the different filter names
+			if( catData.provider[provider].indexOf(catId) >= 0 ){
+				if(allCats.indexOf(catKey) < 0){
+					allCats.push(catKey);
+				}
+			}
+		}
+		return allCats;
 	},
-	'girl':{
-		provider:{
-			'bestbuy':[],
-			'macys':[]
+	categories:{
+		'boy':{
+			provider:{
+				'bestbuy':[],
+				'macys':[]
+			},
+			name: 'Boy'
 		},
-		name: 'Girl'
-	},
-	'clothes':{
-		provider:{
-			'bestbuy':[],
-			'macys':[]
+		'girl':{
+			provider:{
+				'bestbuy':[],
+				'macys':[]
+			},
+			name: 'Girl'
 		},
-		name: 'Clothes'
-	},
-	'games':{
-		provider:{
-			'bestbuy':[],
-			'macys':[]
+		'clothes':{
+			provider:{
+				'bestbuy':[],
+				'macys':[]
+			},
+			name: 'Clothes'
 		},
-		name: 'Games'
-	},
-	'electronics':{
-		provider:{
-			'bestbuy':[],
-			'macys':[]
+		'games':{
+			provider:{
+				'bestbuy':[],
+				'macys':[22941,62841,62842,61740]
+			},
+			name: 'Games'
 		},
-		name: 'Electronics'
-	},
-	'books':{
-		provider:{
-			'bestbuy':[],
-			'macys':[]
+		'toys':{
+			provider:{
+				'bestbuy':[],
+				'macys':[22941,62841,62842,61740]
+			},
+			name: 'Toys'		
 		},
-		name: 'Books'
-	},
-	'music':{
-		provider:{
-			'bestbuy':[],
-			'macys':[]
+		'electronics':{
+			provider:{
+				'bestbuy':[],
+				'macys':[62853]
+			},
+			name: 'Electronics'
 		},
-		name: 'Music'
-	},
+		'books':{
+			provider:{
+				'bestbuy':[],
+				'macys':[]
+			},
+			name: 'Books'
+		},
+		'music':{
+			provider:{
+				'bestbuy':[],
+				'macys':[]
+			},
+			name: 'Music'
+		},
+		'baby':{
+			provider:{
+				'bestbuy':[],
+				'macys':[62843]
+			},
+			name: 'Baby'	
+		}
+	}
 };

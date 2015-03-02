@@ -83,6 +83,34 @@ server.route({
     method: 'GET',
     path: '/search/{term}',
     handler: function(request,reply){
+		var sT = request.params.term || false;
+        ///this is just going to pull out from FB
+        //sidestep above logic
+        var allProductsOutput = [];
+        if(sT){
+	        fbRef.child('products').once('value',function(productsSnap){
+
+		        fbRef.child('filters').child(sT).once('value',function(filterSnap){
+		        	var allProducts = [];
+		        	filterSnap.forEach(function(pSnap){
+		        		allProducts.push(pSnap.key());
+		        	});
+
+		        	//console.log(allProducts);
+		        	productsSnap.forEach(function(fullProductSnap){
+		        		if( allProducts.indexOf( fullProductSnap.key() ) >= 0 ){
+		        			allProductsOutput.push( fullProductSnap.val() );
+		        		}
+		        	});
+		        	reply(allProductsOutput);
+
+		        });
+
+	        });
+    	}else{
+    		reply({error:true,message:'need to specify filter term'});
+    	}
+/*
         var sT = request.params.term || false;
         if(sT){
             var results = [];
@@ -98,6 +126,8 @@ server.route({
         }else{
             reply('error, no search term');
         }
+*/
+
     }
 });
 

@@ -17,6 +17,7 @@ module.exports = {
 			var _ = require('lodash');
 			var Firebase = require('firebase');
 			var Backbone = require('backbone');
+			var Filters = require('../filters.js');
 
 			var Toy = Backbone.Model.extend({
 				defaults: {
@@ -74,14 +75,15 @@ module.exports = {
 
 					var productResults = objectResults.category[0].product || [];
 
-					var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
+					var toypicRef = new Firebase('https://toypic.firebaseio.com/');	
 					//NEED SOME SANITY CHECKS HERE
 
 					//console.log(productResults);
 					_.forEach(productResults.product, function(obj){
 						var prodId = 'macys_' + obj.id;
-						console.log(catId);
-						//console.log(obj.summary.producttype);
+						//console.log(prodId);
+
+					//	console.log(obj.summary.producttype);
 						//go through array of images
 						var allImages = [];
 						_.forEach(obj.image,function(d,i){
@@ -110,7 +112,8 @@ module.exports = {
 							price = priceCheck.sale.value;
 						}
 
-
+						var productCategories = Filters.getCategories(catId,'macys') || [];
+						//console.log(productCategories);
 						if(obj.id && obj.summary.name && price){
 							var prodObj = {
 								id: prodId,
@@ -122,15 +125,20 @@ module.exports = {
 								url: obj.summary.producturl,
 								images: allImages,
 								store:'',
-								category:[]
+								category:productCategories
 							};
 							
 							searchResults.add(prodObj);
 
-							productsRef.child(prodId).set(prodObj);	
+							toypicRef.child('products').child(prodId).set(prodObj);	
+							for(var catInd in productCategories){
+								var catName = productCategories[catInd];
+								toypicRef.child('filters').child(catName).child(prodId).set(true);	
+							}
+
 						}else{
 							console.log('cooodnt add to collection cause it was missing stuff');
-							console.log(priceCheck);
+							//console.log(priceCheck);
 						}
 					});
 
