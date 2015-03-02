@@ -45,12 +45,9 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 	var indexInit = function(){
 		//pull the assets
 		$.get('/search/toys',function(res){
-			console.log('back');
-			console.log(res);
 
 			res.forEach(function(toyData){
 				var t = new Toy(toyData);
-				console.log('adding a toy');
 				toyCollection.add(t);
 			});
 			
