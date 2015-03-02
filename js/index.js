@@ -54,30 +54,60 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			toysView.render();
 		});
 
+		var spareSelected = function(cats){
+			var saveToys = [];
+			var saveCats = cats || [];
+			toyCollection.each(function(toy){
+				var toyCheck = toy || false;
+				
+				if(toyCheck){
+					if(toy.get('selected') ){
+						saveToys.push(toy.toJSON());
+					}
+
+					for(var catInd in saveCats){
+						var catName = saveCats[catInd];
+						if(toy.get('category').indexOf(catName) >= 0 ){
+							saveToys.push(toy.toJSON() );
+						}
+					//	console.log(catName);
+					}
+				}	
+								
+			});
+			toyCollection.reset(saveToys);
+		};
+
+
+		//main filtering, this will be broken out to another function
 		$('div.refine-area > div > div > label').click(function(){
 			var term = $(this).find('input').val() || false;
+			var termOn = false;
+			var saveTheseCats = [];
+			if( !$(this).find('input').prop('checked') ){
+				termOn = true;
+				console.log('NOT CHECKED: ' + term);
+				saveTheseCats.push( term);
+			}
+			
+			
+			$('input[name=options]').each(function(){
+				if( $(this).prop('checked') && $(this).val() !== term ){
+					saveTheseCats.push( $(this).val() );
+				}
+			});
+			console.log(saveTheseCats);
+			spareSelected(saveTheseCats);
 
-			if(term){
+			if(termOn && term){
 
 				$.get('/search/' + term,function(res){
 					//console.log(res);
 					if(res.length > 0 ){
-						var saveToys = [];
-						toyCollection.each(function(toy){
-							var toyCheck = toy || false;
-							
-							if(toyCheck){
-								if(toy.get('selected')){
-									saveToys.push(toy.toJSON());
-								}
-							}	
-											
-						});
-						toyCollection.reset(saveToys);	
 
 						res.forEach(function(toyData){
 							var t = new Toy(toyData);
-							toyCollection.add(t);
+							toyCollection.unshift(t);
 						});
 
 						toysView.render();	
@@ -85,6 +115,8 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 						console.log('no results for term so leaving alone');
 					}
 				});
+			}else{
+				console.log('term test failed');
 			}
 		});
 
