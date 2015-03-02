@@ -78,6 +78,30 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			toyCollection.reset(saveToys);
 		};
 
+		var filterByBudget = function(budget){
+			console.log(budget);
+			toysView.render();
+			var checkPrice = budget*1.0;
+			toyCollection.each(function(toy){
+				if( toy.get('price') <= checkPrice || toy.get('selected') ){
+					console.log( toy.get('id') + ' is safe');
+				}else{
+					$('span.home-toy[data-id=' + toy.get('id') + ']').remove();
+				}
+			});
+		};
+
+		$('#budget-price').keydown(function(e){
+			var code = e.which; 
+    		if(code==13){
+    			e.preventDefault();
+    		}
+    		if(code==32||code==13||code==188||code==186){
+        		console.log('BUDGETSET');
+        		filterByBudget( $(this).val() );
+    		} 
+		});
+
 
 		//main filtering, this will be broken out to another function
 		$('div.refine-area > div > div > label').click(function(){
@@ -100,7 +124,7 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 			spareSelected(saveTheseCats);
 
 			if(termOn && term){
-
+				console.log('pulling in products for the category: ' + term + '...');
 				$.get('/search/' + term,function(res){
 					//console.log(res);
 					if(res.length > 0 ){
@@ -116,7 +140,7 @@ require(['jquery','underscore','backbone','bootstrap','firebase','toy'],function
 					}
 				});
 			}else{
-				console.log('term test failed');
+			//	console.log('term test failed');
 			}
 		});
 

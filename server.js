@@ -130,8 +130,8 @@ server.route({
 	            };
 	        }
         }
-        
-        pullRetailerData();
+
+       // pullRetailerData();
 
     }
 });
