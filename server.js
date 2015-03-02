@@ -113,16 +113,10 @@ server.route({
 
 		var pullRetailerData = function(){
 	        if(sT){
-	            var results = [];
-	            macys.search(sT,function(mdata){
-	                console.log('back from macys search');
-	              //  console.log(mdata);
-	              // reply(mdata);
-	                bestbuy.search(sT,function(bdata){
-	                    console.log('back from best buy search');
-	                  //  reply(mdata.concat(bdata));
-	                });
-	            });
+                bestbuy.search(sT,function(bdata){
+                    console.log('back from best buy search');
+                    //reply(bdata);
+                });
 	        }else{
 	            return { 
 	            	error:true, 
@@ -131,7 +125,7 @@ server.route({
 	        }
         }
 
-       // pullRetailerData();
+      // pullRetailerData();
 
     }
 });

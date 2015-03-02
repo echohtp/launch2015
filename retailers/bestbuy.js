@@ -20,6 +20,7 @@ module.exports = {
 			var http = require('http');
 			var _ = require('lodash');
 			var Firebase = require('firebase');
+			var Filters = require('../filters.js');
 
 			var bestbuyOutput = function(output){
 				if('function' === typeof searchCallback){
@@ -27,7 +28,7 @@ module.exports = {
 				}
 			};
 
-			var parseBestBuyResults = function( results, callback ){
+			var parseBestBuyResults = function( results,catId, callback ){
 				//var resultKeys = _.keys(results);
 				var objectResults = JSON.parse(results);
 
@@ -36,11 +37,12 @@ module.exports = {
 				var productOutput = [];
 				var productResults = objectResults.products;
 				
-				var productsRef = new Firebase('https://toypic.firebaseio.com/products');	
+				var toypicRef = new Firebase('https://toypic.firebaseio.com');	
 				//NEED SOME SANITY CHECKS HERE
+				var allCatData = {};
 				_.forEach(productResults, function(obj){
 					var prodId = 'bestbuy_' + obj.productId;
-					
+				//	console.log(obj.categoryPath);
 					//go through array of images
 					var allImages = [
 						obj.image,
@@ -49,6 +51,12 @@ module.exports = {
 						obj.largeImage
 					];
 
+					var productCategories = [];
+					for(var cat in obj.categoryPath){
+						var halfCats = Filters.getCategories( obj.categoryPath[cat].id, 'bestbuy') || [];
+						productCategories = _.union(halfCats,productCategories);
+					} 
+					console.log(prodId);
 					var prodObj = {
 						id: prodId,
 						name: obj.name,
@@ -59,12 +67,19 @@ module.exports = {
 						url: obj.url,
 						images: allImages,
 						store:'',
-						category:[]
+						category: productCategories
 					};
 
 					productOutput.push(prodObj);
 
-					productsRef.child(prodId).set(prodObj);	
+					toypicRef.child('products').child(prodId).set(prodObj);	
+
+					for(var catInd in productCategories){
+						var catName = productCategories[catInd];
+						console.log('writing to filters:');
+						console.log(catName);
+						toypicRef.child('filters').child(catName).child(prodId).set(true);	
+					}
 				});
 
 				if('function' === typeof callback){

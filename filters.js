@@ -65,7 +65,7 @@ module.exports = {
 		},
 		'music':{
 			provider:{
-				'bestbuy':[],
+				'bestbuy':['cat02001','abcat0600000','cat02504','cat0014000'],
 				'macys':[]
 			},
 			name: 'Music'
